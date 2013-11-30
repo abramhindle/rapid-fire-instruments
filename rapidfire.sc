@@ -117,9 +117,9 @@ Synth(\splayer,[buf: ~crinkles.choose, looping: 1, rate: 0.9 + (0.5.rand)]);
 ~goop = {
     arg sum=0.0, avg=0.0, sumcenter=0.0, avgcenter=0.0, sumleft=0.0, avgleft=0.0, sumright=0.0, avgright=0.0;
 	var amp = 1000, myvol = ~bal.();
-    "GoopRec".postln;
+    //"GoopRec".postln;
     if(sum > ~mingoop, {
-		"GoopPlay".postln;
+		["GoopPlay",sum].postln;
 		Synth(\splayer,[buf: ~ones.choose, rate: 0.9 + (0.3.rand), amp: amp, myvol: myvol ]);
 	});
 };
@@ -217,12 +217,20 @@ o.pops.remove;
 
 
 
+
+
+
+/*
+
 // Change this to 840
 r = Routine {
     560.0.wait;
     "Splotion".postln;
     ~popexplosion.().yield;
 }.play;
+
+
+	// Make some noise!
 
 fork {
     loop {
@@ -238,6 +246,7 @@ fork {
 	}
 };
 
+*/
 
 /* [X] make osc webservice */
 /* [X] make UI */
