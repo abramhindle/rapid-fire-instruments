@@ -1,0 +1,13 @@
+#rapidfire.sc#
+.#rapidfire.sc
+bins
+bins/
+bins/*
+energy.orc~
+energy.sco~
+goop
+goop-osc.pl~
+wavs-old
+*~
+\#*
+#*
