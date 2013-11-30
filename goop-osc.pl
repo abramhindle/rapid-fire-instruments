@@ -7,6 +7,6 @@ my $client = Net::OpenSoundControl::Client->new(Host => "127.0.0.1", Port => 571
 while (<STDIN>) {
     chomp;
     my $line = $_;
-    my ($i,$i2,$i3,@parts) = split(/\s+/, $line);    
-    $client->send(['/goop', ( map { 'f' => $_ } @parts ) ]);
+    my ($i,$i2,$i3,@parts) = split(/\s+/, $line);
+    $client->send(['/goop', ( map { ('f' => $_) } @parts ) ]);
 }

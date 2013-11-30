@@ -113,6 +113,19 @@ Synth(\splayer,[buf: ~crinkles.choose, looping: 1, rate: 0.9 + (0.5.rand)]);
 	}.play;
 };
 
+~mingoop = 1024.0;
+~goop = {
+    arg sum=0.0, avg=0.0, sumcenter=0.0, avgcenter=0.0, sumleft=0.0, avgleft=0.0, sumright=0.0, avgright=0.0;
+	var amp = 1000, myvol = ~bal.();
+    "GoopRec".postln;
+    if(sum > ~mingoop, {
+		"GoopPlay".postln;
+		Synth(\splayer,[buf: ~ones.choose, rate: 0.9 + (0.3.rand), amp: amp, myvol: myvol ]);
+	});
+};
+
+
+
 /*
 ~loopall.( ~crinkles, {|x| Synth(\splayer,[buf: x, rate: 0.3+1.0.rand]) });
 ~loopall.( ~scratches, {|x| Synth(\splayer,[buf: x, rate: 0.3+1.0.rand]) });
@@ -156,6 +169,23 @@ o.one = OSCresponderNode(n, '/one',
 		~onef.(since: since);
 	}
 ).add;
+o.goop = OSCresponderNode(n, '/goop',
+	{ arg t, r, msg;
+		//msg.postln;
+		~goop.(
+			sum: msg[1], 
+			avg: msg[2], 
+			sumcenter: msg[3], 
+			avgcenter: msg[4], 
+			sumleft: msg[5], 
+			avgleft: msg[6], 
+			sumright: msg[7], 
+			avgright: msg[8]);
+
+	}
+).add;
+
+
 
 o.m.sendBundle(0.0, ["/scratch"], ["/scratch"], ["/scratch"]  );
 o.m.sendBundle(0.0, ["/crinkle"], ["/crinkle"], ["/crinkle"]  );

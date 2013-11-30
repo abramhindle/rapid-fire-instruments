@@ -5,7 +5,10 @@ SHAREDFLAGS=-DSDL=1 -lGL -lglut -lSDL -lfreenect -lm `pkg-config --cflags sdl` `
 CC=gcc -std=c99 -O3 
 CPP=g++ -O3 -DSDL=1 -lGL -lglut -lSDL  ${SHAREDFLAGS}
 
-default: playgoop
+default: rapidfire
+
+rapidfire: goop
+	./goop | perl goop-osc.pl
 
 binaries:	goop
 
